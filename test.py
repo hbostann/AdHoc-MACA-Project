@@ -15,7 +15,7 @@ class Suppressor(object):
 
   def write(self, x):
     pass
-supressor = Suppressor()
+suppressor = Suppressor()
 
 old_stdout = sys.stdout
 old_stderr = sys.stderr
