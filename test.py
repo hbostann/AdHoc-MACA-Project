@@ -1,7 +1,3 @@
-import time
-from enum import Enum
-from adhoccomputing import GenericModel, Event, Generics, Definitions, Topology, FramerObjects, FrameHandlerBase, ofdm_callback, MacCsmaPPersistentConfigurationParameters, MacCsmaPPersistent, UsrpB210OfdmFlexFramePhy
-from ctypes import *
 import logging
 import logging.config
 import sys
@@ -21,6 +17,11 @@ old_stdout = sys.stdout
 old_stderr = sys.stderr
 sys.stdout=suppressor
 sys.stderr=suppressor
+
+import time
+from enum import Enum
+from adhoccomputing import GenericModel, Event, Generics, Definitions, Topology, FramerObjects, FrameHandlerBase, ofdm_callback, MacCsmaPPersistentConfigurationParameters, MacCsmaPPersistent, UsrpB210OfdmFlexFramePhy
+from ctypes import *
 
 
 
