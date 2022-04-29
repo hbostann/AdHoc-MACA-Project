@@ -4,8 +4,9 @@ from adhoccomputing import GenericModel, Event, Generics, Definitions, Topology,
 from ctypes import *
 import logging
 import logging.config
+import sys
 
-logging.basicConfig(encoding='utf-8', level=logging.DEBUG)
+logging.basicConfig(stream = sys.stdout, encoding='utf-8', level=logging.DEBUG)
 logging.debug('START LOGGING')
 
 
