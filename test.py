@@ -2,6 +2,11 @@ import time
 from enum import Enum
 from adhoccomputing import GenericModel, Event, Generics, Definitions, Topology, FramerObjects, FrameHandlerBase, ofdm_callback, MacCsmaPPersistentConfigurationParameters, MacCsmaPPersistent, UsrpB210OfdmFlexFramePhy
 from ctypes import *
+import logging
+import logging.config
+
+logging.basicConfig(encoding='utf-8', level=logging.DEBUG)
+logging.debug('START LOGGING')
 
 
 # define your own message types
@@ -116,7 +121,7 @@ def main():
     topo.start()
     i = 0
     # while(i < 10):
-    topo.nodes[0].appl.send_self(Event(topo.nodes[1], UsrpApplicationLayerEventTypes.STARTBROADCAST, None))
+    topo.nodes[1].appl.send_self(Event(topo.nodes[0], UsrpApplicationLayerEventTypes.STARTBROADCAST, None))
     time.sleep(1)
         # time.sleep(1)
         # i = i + 1
