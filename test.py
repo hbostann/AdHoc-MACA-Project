@@ -9,7 +9,7 @@ import sys
 logging.basicConfig(stream = sys.stdout, level=logging.DEBUG)
 logging.debug('START LOGGING')
 
-class Suppressor(object, metaclass=Singleton):
+class Suppressor(object):
   def flush(self):
     pass
 
