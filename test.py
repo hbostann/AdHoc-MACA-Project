@@ -9,6 +9,20 @@ import sys
 logging.basicConfig(stream = sys.stdout, level=logging.DEBUG)
 logging.debug('START LOGGING')
 
+class Suppressor(object, metaclass=Singleton):
+  def flush(self):
+    pass
+
+  def write(self, x):
+    pass
+supressor = Suppressor()
+
+old_stdout = sys.stdout
+old_stderr = sys.stderr
+sys.stdout=suppressor
+sys.stderr=suppressor
+
+
 
 # define your own message types
 class ApplicationLayerMessageTypes(Enum):
