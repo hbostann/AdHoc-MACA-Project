@@ -1,9 +1,24 @@
+
+import time
+from enum import Enum
+from adhoccomputing import GenericModel, Event, Generics, Definitions, Topology, FramerObjects, FrameHandlerBase, ofdm_callback, MacCsmaPPersistentConfigurationParameters, MacCsmaPPersistent, UsrpB210OfdmFlexFramePhy
+from ctypes import *
 import logging
 import logging.config
 import sys
 
-logging.basicConfig(stream = sys.stdout, level=logging.DEBUG)
+DEFAULT_LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'loggers': {
+        '': {
+            'level': 'INFO',
+        },
+    }
+}
+logging.config.dictConfig(DEFAULT_LOGGING)
 logging.debug('START LOGGING')
+
 
 class Suppressor(object):
   def flush(self):
@@ -17,11 +32,6 @@ old_stdout = sys.stdout
 old_stderr = sys.stderr
 sys.stdout=suppressor
 sys.stderr=suppressor
-
-import time
-from enum import Enum
-from adhoccomputing import GenericModel, Event, Generics, Definitions, Topology, FramerObjects, FrameHandlerBase, ofdm_callback, MacCsmaPPersistentConfigurationParameters, MacCsmaPPersistent, UsrpB210OfdmFlexFramePhy
-from ctypes import *
 
 
 
