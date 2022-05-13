@@ -12,7 +12,7 @@ DEFAULT_LOGGING = {
     'disable_existing_loggers': True,
     'loggers': {
         '': {
-            'level': 'INFO',
+            'level': 'DEBUG',
         },
     }
 }
