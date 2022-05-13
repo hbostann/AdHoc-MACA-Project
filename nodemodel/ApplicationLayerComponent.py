@@ -1,8 +1,9 @@
-from enum import Enum
 import logging
+from enum import Enum
 
 from adhoccomputing.GenericModel import GenericModel
-from adhoccomputing.Generics import Event, EventTypes, GenericMessageHeader, GenericMessage
+from adhoccomputing.Generics import (Event, EventTypes, GenericMessage,
+                                     GenericMessageHeader)
 
 
 # define your own message types
@@ -28,7 +29,7 @@ class AcknowledgingAppLayer(GenericModel):
 
     self.eventhandlers[AcknowledgingAppLayerEventTypes.SENDDAT] = self.SendData
     self.eventhandlers[AcknowledgingAppLayerEventTypes.SENDACK] = self.SendAck
-    self.received_count = 0
+    self.received_bytes = 0
     self.identifier = f"{self.componentname}[{self.componentinstancenumber}]"
     self.id = self.componentinstancenumber
 
@@ -38,6 +39,7 @@ class AcknowledgingAppLayer(GenericModel):
     self.send_down(eventobj)
 
   def on_message_from_bottom(self, eventobj: Event):
+    # print(eventobj.eventcontent.eventcontent.eventcontent)
     from_id = eventobj.eventcontent.header.messagefrom
     dest_id = eventobj.eventcontent.header.messageto
     mesg_type = eventobj.eventcontent.header.messagetype
@@ -56,6 +58,7 @@ class AcknowledgingAppLayer(GenericModel):
       ack_msg = GenericMessage(ack_header, f"{self.id} acknowledges!")
       self.send_self(
           Event(self, AcknowledgingAppLayerEventTypes.SENDACK, ack_msg))
+      self.received_bytes += len(str(eventobj.eventcontent.payload))
       return
 
     if mesg_type == AcknowledgingAppLayerMessageTypes.ACK:
@@ -86,4 +89,4 @@ class AcknowledgingAppLayer(GenericModel):
     logging.info(
         f"{self.identifier} sending ACK [F:{from_id}][T:{dest_id}][{mesg_type}]['{content}']"
     )
-    self.send_down(self, eventobj)
+    self.send_down(Event(self, EventTypes.MFRT, eventobj.eventcontent))
