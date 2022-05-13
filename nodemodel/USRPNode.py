@@ -21,9 +21,9 @@ class USRPNode(GenericNode):
     self.components.append(self.mac)
     self.components.append(self.phy)
 
-    self.appl.connect_me_to_component(ConnectorTypes.DOWN, self.mac)
+    self.application.connect_me_to_component(ConnectorTypes.DOWN, self.mac)
 
-    self.mac.connect_me_to_component(ConnectorTypes.UP, self.appl)
+    self.mac.connect_me_to_component(ConnectorTypes.UP, self.application)
     self.mac.connect_me_to_component(ConnectorTypes.DOWN, self.phy)
 
     self.phy.connect_me_to_component(ConnectorTypes.UP, self.mac)
