@@ -9,7 +9,7 @@ from adhoccomputing.Networking.MacProtocol.CSMA import MacCsmaPPersistent, MacCs
 class USRPNode(GenericNode):
 
   def __init__(self, componentname, componentinstancenumber, *args, **kwargs):
-    super.__init__(componentname, componentinstancenumber, *args, **kwargs)
+    super().__init__(componentname, componentinstancenumber, *args, **kwargs)
     macconfig = MacCsmaPPersistentConfigurationParameters(0.5)
 
     self.phy = UsrpB210OfdmFlexFramePhy("UsrpB210OfdmFlexFramePhy",
