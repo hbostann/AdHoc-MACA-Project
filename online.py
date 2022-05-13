@@ -8,18 +8,18 @@ from adhoccomputing.Experimentation.Topology import Topology
 from adhoccomputing.Networking.LogicalChannels.GenericChannel import \
     GenericChannel
 
-from nodemodel.GenericNode import GenericNode
+from nodemodel.USRPNode import USRPNode
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 
 def main():
   topo = Topology()
-  topo.construct_winslab_topology_with_channels(4, GenericNode, GenericChannel)
+  topo.construct_winslab_topology_with_channels(4, USRPNode, GenericChannel)
 
   topo.start()
   start = time.time()
-  for i in range(5):
+  for i in range(500):
     from_id = random.randint(0, 3)
     dest_id = random.randint(0, 3)
     message = "".join(
